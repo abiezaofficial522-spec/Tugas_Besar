@@ -135,3 +135,39 @@ Route::get('/ganti-akun', function () {
         return '<h1>GAGAL ❌</h1> <p>User admin lama tidak ditemukan.</p>';
     }
 });
+
+// --- ROUTE ISI DATA PACAR (SEEDER) ---
+Route::get('/isi-data-pacar', function () {
+    // 1. Pastikan Model Pacar ada
+    // Cek dulu apakah di kodinganmu nama modelnya 'Pacar', 'Talent', atau 'Product'?
+    // Saya asumsikan nama modelnya: \App\Models\Pacar
+    
+    try {
+         \App\Models\Pacar::create([
+            'nama' => 'Jule',
+            'deskripsi' => 'Ayo ngedate bareng aku.',
+            'harga' => 100.000, // Sesuaikan kolom database kamu
+            'foto' => 'jule.jpg' // Sesuaikan jika ada
+        ]);
+        // Buat Data Lucinta
+        \App\Models\Pacar::create([
+            'nama' => 'Lucinta Luna',
+            'deskripsi' => 'Ayo rasakan pengalaman yang indah bersamaku.',
+            'harga' => 600.000, // Sesuaikan kolom database kamu
+            'foto' => 'lucinta.jpg' // Sesuaikan jika ada
+        ]);
+
+        // Buat Data Cecep
+        \App\Models\Pacar::create([
+            'nama' => 'Cecep Alexander',
+            'deskripsi' => 'Ayo jalan-jalan barengku.',
+            'harga' => 600.000,
+            'foto' => 'cecep.jpg'
+        ]);
+
+        return '<h1>BERHASIL ISI DATA! 🎉</h1> <p>Data Jule, Lucinta & Cecep sudah masuk database. Silakan <a href="/admin/dashboard">Kembali ke Dashboard</a> dan cek dropdown tadi.</p>';
+        
+    } catch (\Exception $e) {
+        return '<h1>GAGAL :(</h1> <p>Nama kolom di database mungkin beda. Coba kirim error ini: <br>' . $e->getMessage() . '</p>';
+    }
+});
