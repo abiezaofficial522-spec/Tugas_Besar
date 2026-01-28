@@ -186,3 +186,9 @@ Route::get('/cek-isi-database', function () {
         return '<h1>ERROR</h1> <p>Tabel tidak ditemukan atau error lain:</p>' . $e->getMessage();
     }
 });
+
+Route::get('/intip-kolom', function () {
+    // Mengambil daftar nama kolom di tabel 'pacars'
+    $kolom = \Illuminate\Support\Facades\Schema::getColumnListing('pacars');
+    return $kolom;
+});
