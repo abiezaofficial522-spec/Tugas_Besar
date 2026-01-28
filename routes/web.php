@@ -52,7 +52,7 @@ Route::post('/order', function (\Illuminate\Http\Request $request) {
         $order->nama_pasangan = $request->nama_pasangan; 
         $order->email         = $request->email;
         $order->nomor_wa      = $request->nomor_wa;
-        $order->tanggal       = $request->order_date; // Perhatikan: di form namanya 'order_date'
+        $order->order_date    = $request->order_date; 
         
         // Status default
         $order->status        = 'pending'; 
