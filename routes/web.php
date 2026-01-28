@@ -136,39 +136,47 @@ Route::get('/ganti-akun', function () {
     }
 });
 
-// --- ROUTE ISI DATA PACAR (SEEDER) ---
-Route::get('/isi-data-pacar', function () {
-    // 1. Pastikan Model Pacar ada
-    // Cek dulu apakah di kodinganmu nama modelnya 'Pacar', 'Talent', atau 'Product'?
-    // Saya asumsikan nama modelnya: \App\Models\Pacar
-    
+// --- ROUTE ISI DATA (FIX SESUAI KOLOM) ---
+Route::get('/isi-data-fix', function () {
     try {
-         \App\Models\Pacar::create([
+        // Kita pakai DB Facade biar lebih 'paksa' masuk (bypass Model)
+        
+        // Data 1 (Akan jadi ID 1)
+        \Illuminate\Support\Facades\DB::table('pacars')->insert([
             'nama' => 'Jule',
-            'deskripsi' => 'Ayo ngedate bareng aku.',
-            'harga' => 100.000, // Sesuaikan kolom database kamu
-            'foto' => 'jule.jpg' // Sesuaikan jika ada
+            'usia' => 25,
+            'alamat' => 'Bandung, Jawa Barat',
+            'pekerjaan' => 'Karyawan Swasta',
+            'hobi' => 'Membaca',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
-        // Buat Data Lucinta
-        \App\Models\Pacar::create([
+
+        // Data 2 (Akan jadi ID 2 - Penting buat tes Order tadi)
+        \Illuminate\Support\Facades\DB::table('pacars')->insert([
             'nama' => 'Lucinta Luna',
-            'deskripsi' => 'Ayo rasakan pengalaman yang indah bersamaku.',
-            'harga' => 600.000, // Sesuaikan kolom database kamu
-            'foto' => 'lucinta.jpg' // Sesuaikan jika ada
+            'usia' => 25,
+            'alamat' => 'Jakarta Selatan',
+            'pekerjaan' => 'Selebgram',
+            'hobi' => 'Menyanyi',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        // Buat Data Cecep
-        \App\Models\Pacar::create([
+        \Illuminate\Support\Facades\DB::table('pacars')->insert([
             'nama' => 'Cecep Alexander',
-            'deskripsi' => 'Ayo jalan-jalan barengku.',
-            'harga' => 600.000,
-            'foto' => 'cecep.jpg'
+            'usia' => 20,
+            'alamat' => 'Jakarta Selatan',
+            'pekerjaan' => 'Pengangguran',
+            'hobi' => 'Menyanyi',
+            'created_at' => now(),
+            'updated_at' => now(),
         ]);
 
-        return '<h1>BERHASIL ISI DATA! 🎉</h1> <p>Data Jule, Lucinta & Cecep sudah masuk database. Silakan <a href="/admin/dashboard">Kembali ke Dashboard</a> dan cek dropdown tadi.</p>';
+        return "<h1>✅ SUKSES BESAR!</h1> <p>2 Data Talent sudah berhasil masuk ke Database. <br>Sekarang ID 1 dan ID 2 sudah tersedia.</p>";
         
     } catch (\Exception $e) {
-        return '<h1>GAGAL :(</h1> <p>Nama kolom di database mungkin beda. Coba kirim error ini: <br>' . $e->getMessage() . '</p>';
+        return "<h1>MASIH GAGAL :(</h1> Error: " . $e->getMessage();
     }
 });
 

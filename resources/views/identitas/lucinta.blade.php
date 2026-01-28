@@ -17,7 +17,7 @@
                         <p class="text-start"><strong>Nama:</strong> Lucinta Luna</p>
                         <p class="text-start"><strong>Usia:</strong> 25 tahun</p>
                         <p class="text-start"><strong>Alamat:</strong> Jl. Melati</p>
-                        <p class="text-start"><strong>Pekerjaan:</strong> Kasir</p>
+                        <p class="text-start"><strong>Pekerjaan:</strong> Selebgram</p>
                         <p class="text-start"><strong>Hobi:</strong> Nonton drama</p>
                     </div>
                 </div>

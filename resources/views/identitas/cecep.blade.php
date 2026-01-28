@@ -17,7 +17,7 @@
                         <p class="text-start"><strong>Nama:</strong> Cecep Alexander</p>
                         <p class="text-start"><strong>Usia:</strong> 20 tahun</p>
                         <p class="text-start"><strong>Alamat:</strong> Jl. Supratman</p>
-                        <p class="text-start"><strong>Pekerjaan:</strong> Supir</p>
+                        <p class="text-start"><strong>Pekerjaan:</strong> Pengangguran</p>
                         <p class="text-start"><strong>Hobi:</strong> Olahraga dan Muncak</p>
                     </div>
                 </div>

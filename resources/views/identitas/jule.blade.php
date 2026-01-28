@@ -15,7 +15,7 @@
                         <img src="https://i.pinimg.com/736x/93/fe/73/93fe73024d5a05b683b18af71456f05f.jpg" alt="Foto Profil Jule" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
                         <h1 class="card-title mb-4">Data Diri</h1>
                         <p class="text-start"><strong>Nama:</strong> Jule</p>
-                        <p class="text-start"><strong>Usia:</strong> 30 tahun</p>
+                        <p class="text-start"><strong>Usia:</strong> 25 tahun</p>
                         <p class="text-start"><strong>Alamat:</strong> Jl. Jakarta</p>
                         <p class="text-start"><strong>Pekerjaan:</strong> Karyawan Swasta</p>
                         <p class="text-start"><strong>Hobi:</strong> Membaca dan olahraga</p>
