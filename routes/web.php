@@ -38,8 +38,42 @@ Route::get('/order/{id}', function ($id) {
 })->name('order');
 
 // Route for storing order
-Route::post('/order', [App\Http\Controllers\OrderController::class, 'storeOrder'])->name('order.store');
+// --- ROUTE PENYIMPANAN DATA (DIRECT) ---
+Route::post('/order', function (\Illuminate\Http\Request $request) {
+    try {
+        // 1. Cek apakah Model Order bisa dipanggil
+        // Pastikan nama tabel & kolom sesuai dengan form kamu
+        
+        $order = new \App\Models\Order(); // Mencoba panggil Model
+        
+        // 2. Masukkan data dari Form ke Database
+        // Kiri: Nama Kolom di Database | Kanan: Nama di Form HTML
+        $order->pacar_id      = $request->pacar_id;
+        $order->nama_pasangan = $request->nama_pasangan; 
+        $order->email         = $request->email;
+        $order->nomor_wa      = $request->nomor_wa;
+        $order->tanggal       = $request->order_date; // Perhatikan: di form namanya 'order_date'
+        
+        // Status default
+        $order->status        = 'pending'; 
+        
+        // Simpan
+        $order->save();
 
+        // 3. Jika Berhasil -> Balik ke Home + Notif
+        return redirect('/')->with('success', 'Hore! Pesanan berhasil dibuat. Tunggu admin menghubungi WhatsApp kamu ya! 🚀');
+
+    } catch (\Exception $e) {
+        // 4. JIKA ERROR -> TAMPILKAN DI LAYAR (JANGAN DISEMBUNYIKAN)
+        return '<div style="background:red; color:white; padding:20px;">
+                <h1>GAGAL MENYIMPAN :(</h1>
+                <h3>Penyebab Error:</h3>
+                <p>'. $e->getMessage() .'</p>
+                <hr>
+                <p>Screenshot layar ini dan kirim ke AI untuk diperbaiki.</p>
+                </div>';
+    }
+})->name('order.store');
 // Route for updating order
 Route::put('/order/{id}', [App\Http\Controllers\OrderController::class, 'updateOrder'])->name('order.update');
 
