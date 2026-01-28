@@ -52,16 +52,26 @@ Route::get('/cecep', function () {
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
-Route::get('/fix-admin', function () {
-    // Hapus user lama biar bersih
-    User::truncate(); 
-    
-    // Buat User Admin Baru
-    User::create([
-        'name' => 'Super Admin',
-        'email' => 'admin@admin.com',
-        'password' => Hash::make('password'),
-    ]);
+// --- SETUP DATABASE MYSQL OTOMATIS ---
+Route::get('/setup-mysql', function () {
+    try {
+        // 1. Perintah Migrate (Bikin Tabel)
+        \Illuminate\Support\Facades\Artisan::call('migrate', ['--force' => true]);
+        
+        // 2. Hapus user lama jika ada (biar bersih)
+        \App\Models\User::where('email', 'admin@admin.com')->delete();
+        
+        // 3. Buat User Admin Baru
+        \App\Models\User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('password'), // passwordnya: password
+        ]);
 
-    return 'Admin berhasil di-reset! Silakan login: admin@admin.com | password';
+        return '<h1>SUKSES! 🎉</h1> <p>Database MySQL sudah aktif. Admin sudah dibuat.</p> <a href="/admin/login">Klik disini untuk Login</a>';
+        
+    } catch (\Exception $e) {
+        // Kalau error, tampilkan errornya biar ketahuan salah dimana
+        return '<h1>GAGAL :(</h1> <p>Pesan Error: ' . $e->getMessage() . '</p>';
+    }
 });
