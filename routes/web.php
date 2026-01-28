@@ -28,7 +28,14 @@ Route::get('/jule', function () {
 })->name('jule');
 
 // Route for Order page
-Route::get('/order/{pacar_id}', [App\Http\Controllers\OrderController::class, 'showOrderForm'])->name('order');
+// Route JALUR KHUSUS untuk Form Order Kamu
+Route::get('/order/{id}', function ($id) {
+    // Kita buat data pura-pura (object) supaya form kamu tidak error baca '$pacar->id'
+    $pacar = (object) ['id' => $id];
+    
+    // Memanggil file: resources/views/formorder/order.blade.php
+    return view('formorder.order', compact('pacar'));
+})->name('order');
 
 // Route for storing order
 Route::post('/order', [App\Http\Controllers\OrderController::class, 'storeOrder'])->name('order.store');
